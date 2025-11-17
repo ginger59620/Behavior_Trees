@@ -2164,6 +2164,7 @@ MonoBehaviour:
   van: {fileID: 631430679}
   backdoor: {fileID: 919599686}
   frontdoor: {fileID: 1791870521}
+  money: 840
 --- !u!1 &716268924
 GameObject:
   m_ObjectHideFlags: 0
