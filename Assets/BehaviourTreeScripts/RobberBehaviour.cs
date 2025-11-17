@@ -9,7 +9,7 @@ public class RobberBehaviour : MonoBehaviour
     public GameObject diamond;
     public GameObject van;
     public GameObject backdoor;
-    public GameObject fackdoor;
+    public GameObject frontdoor;
     NavMeshAgent agent;
 
     public enum ActionState { IDLE, WORKING };
@@ -26,11 +26,11 @@ public class RobberBehaviour : MonoBehaviour
         Sequence steal = new Sequence("Steal Something");
         Leaf goToDiamond = new Leaf("Go To Diamond", GoToDiamond);
         Leaf goToBackDoor = new Leaf("Go To BackDoor", GoToBackDoor);
-        Leaf goToFackDoor = new Leaf("Go To FackDoor", GoToFackDoor);
+        Leaf goToFrontDoor = new Leaf("Go To FrontDoor", GoToFrontDoor);
         Leaf goToVan = new Leaf("Go To Van", GoToVan);
         Selector opendoor = new Selector("Open Door");
 
-        opendoor.AddChild(goToFackDoor);
+        opendoor.AddChild(goToFrontDoor);
         opendoor.AddChild(goToBackDoor);
       
         steal.AddChild(opendoor);
@@ -44,20 +44,40 @@ public class RobberBehaviour : MonoBehaviour
     public Node.Status GoToDiamond()
     {
 
-        return GoToLocation(diamond.transform.position);
+        Node.Status s = GoToLocation(diamond.transform.position);
+        if (s == Node.Status.SUCCESS)
+        {
+            diamond.transform.parent = this.gameObject.transform;
+        }
+         return s;
     }
     public Node.Status GoToBackDoor()
     {
 
-        return GoToLocation(backdoor.transform.position);
+        return GoToDoor(backdoor);
     }
-    public Node.Status GoToFackDoor()
+    public Node.Status GoToFrontDoor()
     {
-        return GoToLocation(fackdoor.transform.position);
+        return GoToDoor(frontdoor);
     }
     public Node.Status GoToVan()
     {
         return GoToLocation(van.transform.position);
+    }
+    public Node.Status GoToDoor(GameObject door)
+    {
+        Node.Status s = GoToLocation(door.transform.position);
+        if (s == Node.Status.SUCCESS)
+        {
+            if (!door.GetComponent<Lock>().isLocked)
+            {
+                door.SetActive(false);
+                return Node.Status.SUCCESS;
+            }
+            return Node.Status.FAILURE;
+        }
+        else
+            return s;
     }
     Node.Status GoToLocation(Vector3 destination)
     {
