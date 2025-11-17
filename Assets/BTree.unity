@@ -1759,13 +1759,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524558653}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.22950613, y: 0.34205493, z: -0.08654347, w: -0.9071029}
-  m_LocalPosition: {x: 21.895, y: 20.782, z: -6.496}
+  m_LocalRotation: {x: 0.33535242, y: -0.53535867, z: 0.35778934, w: 0.6876894}
+  m_LocalPosition: {x: 35.1, y: 42.25, z: 2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 57.6, y: -67.869, z: 14.375}
 --- !u!1 &554263518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diamond: {fileID: 1550492363}
   van: {fileID: 631430679}
+  backdoor: {fileID: 919599686}
 --- !u!1 &716268924
 GameObject:
   m_ObjectHideFlags: 0
